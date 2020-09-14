@@ -8,6 +8,7 @@
 // we need at least one __TEXT, __const section entry in main application .o files
 // to get this section emitted at right time and so avoid LC_ENCRYPTION_INFO size miscalculation
 static const int constsection = 0;
+static bool player_created = false;
 
 bool unity_inited = false;
 
@@ -142,7 +143,10 @@ static BOOL _isUnityReady = NO;
         completed();
     }];
 
-    if (UnityIsInited()) {
+//    if (UnityIsInited()) {
+//        return;
+//    }
+    if (UnityIsInited() || player_created) {
         return;
     }
 
